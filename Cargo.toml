@@ -1,0 +1,16 @@
+[package]
+name = "whatlang-corpora-downloader"
+version = "0.1.0"
+authors = ["Sergey Potapov <blake131313@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+whatlang = { path = "../whatlang-rs", features = ["enum-map"] }
+flate2 = "*"
+tar = "*"
+futures = "0.3"
+
+reqwest = { version = "0.10", features = ["json"] }
+tokio = { version = "0.2", features = ["full"] }
+tempfile = "*"
+enum-map = "0.6"
