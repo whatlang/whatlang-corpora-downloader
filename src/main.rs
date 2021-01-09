@@ -69,19 +69,13 @@ async fn main() -> Result<()> {
         Lang::Mal => "mal_wikipedia_2016_100K",
         Lang::Ori => "ori_wikipedia_2016_30K",
         Lang::Mya => "", // has own script
-        Lang::Bho => "", // See https://omniglot.com/language/phrases/bhojpuri.php
         Lang::Tgl => "tgl_wikipedia_2016_100K",
         Lang::Yor => "yor_wikipedia_2016_10K",
-        Lang::Mai => "",  // see https://mai.wikipedia.org/wiki/%E0%A4%AE%E0%A5%88%E0%A4%A5%E0%A4%BF%E0%A4%B2%E0%A5%80_%E0%A4%AD%E0%A4%BE%E0%A4%B7%E0%A4%BE
-        Lang::Orm => "",  // see https://om.wikipedia.org/wiki/Afaan_Oromoo
-        Lang::Ibo => "",  // see https://ig.wikipedia.org/wiki/As%E1%BB%A5%CC%80s%E1%BB%A5%CC%80_%C3%8Cgb%C3%B2
         Lang::Ceb => "ceb_wikipedia_2016_100K",
-        Lang::Kur => "kur_newscrawl_2011_30K",
         Lang::Mlg => "mlg_wikipedia_2014_30K",
-        Lang::Skr => "",  // see https://skr.wikipedia.org/wiki/%D8%B3%D8%B1%D8%A7%D8%A6%DB%8C%DA%A9%DB%8C_%D8%B2%D8%A8%D8%A7%D9%86
         Lang::Nep => "nep_wikipedia_2016_100K",
         Lang::Sin => "sin_wikipedia_2016_100K",
-        Lang::Khm => "", // https://km.wikipedia.org/wiki/%E1%9E%97%E1%9E%B6%E1%9E%9F%E1%9E%B6%E1%9E%81%E1%9F%92%E1%9E%98%E1%9F%82%E1%9E%9A
+        Lang::Khm => "",  // has own script, https://km.wikipedia.org/wiki/%E1%9E%97%E1%9E%B6%E1%9E%9F%E1%9E%B6%E1%9E%81%E1%9F%92%E1%9E%98%E1%9F%82%E1%9E%9A
         Lang::Tuk => "tuk_wikipedia_2016_30K",
         Lang::Som => "som_newscrawl_2011_100K",
         Lang::Aka => "aka_wikipedia_2018",
@@ -89,7 +83,6 @@ async fn main() -> Result<()> {
         Lang::Kin => "kin_community_2017_30K",
         Lang::Hat => "hat-ht_web_2015_30K",
         Lang::Ilo => "ilo_wikipedia_2016_10K",
-        Lang::Run => "",  // https://rn.wikipedia.org/wiki/Ikirundi
         Lang::Sna => "sna-zw_web_2018_100K",
         Lang::Uig => "uig_wikipedia_2016_30K",
         Lang::Afr => "afr_mixed_2019_100K",
@@ -181,7 +174,7 @@ fn find_sentences_txt_entry<'a, 'b>(entries: tar::Entries<'a, GzDecoder<&'b [u8]
 }
 
 async fn find_slugs() {
-    for lang in Lang::values() {
+    for &lang in Lang::values() {
         let slug = find_slug_for(lang).await.unwrap_or("NOT_FOUND".into());
         println!("Lang::{:?} => \"{}\",", lang, slug);
     }
